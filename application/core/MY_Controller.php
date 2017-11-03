@@ -137,22 +137,6 @@ class  MY_Controller extends CI_Controller
             'path' => $this->uri->segment(1) == 'adm' ? 'assets/adm/css/' : null
         ), true);
         $this->loadCss(array(
-            'name' => 'media_xs',
-            'path' => $this->uri->segment(1) == 'adm' ? 'assets/adm/css/' : null
-        ), true);
-        $this->loadCss(array(
-            'name' => 'media_sm',
-            'path' => $this->uri->segment(1) == 'adm' ? 'assets/adm/css/' : null
-        ), true);
-        $this->loadCss(array(
-            'name' => 'media_md',
-            'path' => $this->uri->segment(1) == 'adm' ? 'assets/adm/css/' : null
-        ), true);
-        $this->loadCss(array(
-            'name' => 'media_lg',
-            'path' => $this->uri->segment(1) == 'adm' ? 'assets/adm/css/' : null
-        ), true);
-        $this->loadCss(array(
             'name' => $this->router->class . '_' . $this->router->method,
             'path' => $this->uri->segment(1) == 'adm' ? 'assets/adm/css/' : null
         ));
@@ -169,6 +153,7 @@ class  MY_Controller extends CI_Controller
                 )
             )
         );
+        $this->loadTemplateAssets();
 
         $this->data['js'] = implode(null, $this->js);
         $this->data['css'] = implode(null, $this->css);
@@ -238,27 +223,78 @@ class  MY_Controller extends CI_Controller
         }
     }
 
-    protected function loadBootstrap($onlyCss = false)
+    protected function loadJquery()
+    {
+        $this->loadJs(array(
+            'name' => 'jquery.min',
+            'path' => 'assets/jquery/',
+        ), true);
+    }
+
+    protected function loadBootstrap()
+    {
+        $this->loadJquery();
+
+        $this->loadCss(array(
+            'name' => 'bootstrap.min',
+            'path' => 'assets/bootstrap/',
+        ), true);
+
+        $this->loadJs(array(
+            'name' => 'bootstrap.min',
+            'path' => 'assets/bootstrap/',
+        ), true);
+    }
+
+    protected function loadOwlCarousel()
     {
         $this->loadCss(array(
-            array(
-                'name' => 'bootstrap',
-                'path' => 'assets/bootstrap/css/'
-            ),
-            array(
-                'name' => 'bootstrap-theme',
-                'path' => 'assets/bootstrap/css/'
-            )
+            'name' => 'owl.carousel',
+            'path' => 'assets/owl.carousel/',
         ), true);
-        if ($onlyCss == false) {
-            $this->loadJquery();
-            $this->loadJs(array(
-                array(
-                    'name' => 'bootstrap',
-                    'path' => 'assets/bootstrap/js/'
-                )
-            ), true);
-        }
+
+        $this->loadJs(array(
+            'name' => 'owl.carousel.min',
+            'path' => 'assets/owl.carousel/',
+        ), true);
+    }
+    protected function loadJquerySticky()
+    {
+        $this->loadJs(array(
+            'name' => 'jquery.sticky',
+            'path' => 'assets/jquery.sticky/',
+        ), true);
+    }
+    protected function loadJqueryEasing()
+    {
+        $this->loadJs(array(
+            'name' => 'jquery.easing.1.3.min',
+            'path' => 'assets/jquery.easing/',
+        ), true);
+    }
+    protected function loadBxslider()
+    {
+        $this->loadJs(array(
+            'name' => 'bxslider.min',
+            'path' => 'assets/bxslider/',
+        ), true);
+    }
+
+    protected function loadTemplateAssets()
+    {
+        $this->loadBootstrap();
+        $this->loadOwlCarousel();
+        $this->loadJquerySticky();
+        $this->loadJqueryEasing();
+        $this->loadBxslider();
+
+        $this->loadCss(array(
+            'name' => 'font-awesome.min',
+        ), true);
+
+        $this->loadJs(array(
+            'name' => 'script.slider',
+        ));
     }
 
     protected function loadCss(array $files, $priority = false)

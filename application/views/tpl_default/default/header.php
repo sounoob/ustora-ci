@@ -10,6 +10,12 @@
     <base href="<?php echo base_url(); ?>">
     <meta name="controller" content="<?php echo $this->router->class ?>"/>
     <meta name="method" content="<?php echo $this->router->method ?>"/>
+
+    <!-- Google Fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'>
+
     <?php echo isset($assets) ? $assets : NULL; ?>
     <?php echo isset($css) ? $css : NULL; ?>
     <?php echo isset($js) ? $js : NULL; ?>
